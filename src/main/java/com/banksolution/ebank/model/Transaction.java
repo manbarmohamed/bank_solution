@@ -1,0 +1,35 @@
+package com.banksolution.ebank.model;
+
+import com.banksolution.ebank.model.enums.TypeTransaction;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Transaction {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private LocalDateTime dateHeure;
+    private double montant;
+
+    @Enumerated(EnumType.STRING)
+    private TypeTransaction type;
+
+    private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "compte_id")
+    private Compte compte;
+
+    // Getters, setters, et constructeurs
+}
