@@ -28,12 +28,18 @@ public class Compte {
     private LocalDate dateCreation;
     private boolean actif;
 
-    @OneToMany(mappedBy = "compte", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Transaction> transactions = new ArrayList<>();
-
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
+
+    @OneToMany(mappedBy = "compte")
+    private List<Transaction> transactions;
+
+    @OneToMany(mappedBy = "compte")
+    private List<CarteBancaire> cartesBancaires;
+
+    @OneToMany(mappedBy = "compte")
+    private List<Beneficiaire> beneficiaries;
 
 
 }

@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,5 +33,7 @@ public class Transaction {
     @JoinColumn(name = "compte_id")
     private Compte compte;
 
-    // Getters, setters, et constructeurs
+    @ManyToOne
+    @JoinColumn(name = "beneficiare_id")
+    private Beneficiaire beneficiaire;
 }

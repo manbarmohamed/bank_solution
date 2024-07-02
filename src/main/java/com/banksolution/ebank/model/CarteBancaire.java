@@ -30,8 +30,8 @@ public class CarteBancaire {
     private String raisonBlocage;
 
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
-    private Utilisateur utilisateur;
+    @JoinColumn(name = "compte_id")
+    private Compte compte;
 
     // Getters, setters, et constructeurs
 }

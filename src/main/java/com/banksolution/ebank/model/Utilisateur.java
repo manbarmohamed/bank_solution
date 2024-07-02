@@ -25,14 +25,8 @@ public class Utilisateur {
     private String prenom;
     private String email;
 
-    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Compte> comptes = new ArrayList<>();
-
-    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CarteBancaire> cartes = new ArrayList<>();
-
-    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Beneficiaire> beneficiaires = new ArrayList<>();
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Compte> comptes;
 
     // Getters, setters, et constructeurs
 }
