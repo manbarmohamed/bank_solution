@@ -33,5 +33,5 @@ public class CarteBancaire {
     @JoinColumn(name = "compte_id")
     private Compte compte;
 
-    // Getters, setters, et constructeurs
+
 }

@@ -1,7 +1,7 @@
 package com.banksolution.ebank.controller;
 
 
-import com.banksolution.ebank.exception.BeneficiaireNotFoundException;
+
 import com.banksolution.ebank.model.Beneficiaire;
 import com.banksolution.ebank.service.BeneficiaireService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api/beneficiaire")
