@@ -1,6 +1,7 @@
 package com.banksolution.ebank.model;
 
 import com.banksolution.ebank.model.enums.TypeCompte;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,12 +34,15 @@ public class Compte {
     private Utilisateur utilisateur;
 
     @OneToMany(mappedBy = "compte")
+    @JsonIgnore
     private List<Transaction> transactions;
 
     @OneToMany(mappedBy = "compte")
+    @JsonIgnore
     private List<CarteBancaire> cartesBancaires;
 
     @OneToMany(mappedBy = "compte")
+    @JsonIgnore
     private List<Beneficiaire> beneficiaries;
 
 

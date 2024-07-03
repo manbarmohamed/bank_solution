@@ -2,6 +2,7 @@ package com.banksolution.ebank.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +27,8 @@ public class Utilisateur {
     private String email;
 
     @OneToMany(mappedBy = "utilisateur")
+    @JsonIgnore
     private List<Compte> comptes;
 
-    // Getters, setters, et constructeurs
+
 }

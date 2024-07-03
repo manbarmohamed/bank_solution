@@ -1,6 +1,7 @@
 package com.banksolution.ebank.model;
 
 import com.banksolution.ebank.model.enums.TypeTransaction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,9 +32,11 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "compte_id")
+    @JsonIgnore
     private Compte compte;
 
     @ManyToOne
     @JoinColumn(name = "beneficiare_id")
+    @JsonIgnore
     private Beneficiaire beneficiaire;
 }

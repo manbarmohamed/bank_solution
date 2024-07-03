@@ -52,4 +52,8 @@ public class CompteService {
     public List<Compte> getComptes() {
         return compteRepository.findAll();
     }
+
+    public void closeCompte(Long compteId) {
+        compteRepository.deleteById(compteId);
+    }
 }
