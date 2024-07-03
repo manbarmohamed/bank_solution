@@ -1,5 +1,7 @@
 package com.banksolution.ebank.service;
 
+import com.banksolution.ebank.controller.BeneficiaireController;
+import com.banksolution.ebank.exception.BeneficiaireNotFoundException;
 import com.banksolution.ebank.model.Beneficiaire;
 import com.banksolution.ebank.repository.BeneficiaireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +18,17 @@ public class BeneficiaireService {
     public List<Beneficiaire> getAllBeneficiaire() {
         return beneficiaireRepository.findAll();
     }
-    public Optional<Beneficiaire> getBeneficiaireById(Long id) {
-        return beneficiaireRepository.findById(id);
+    public Beneficiaire getBeneficiaireById(Long id) {
+        return beneficiaireRepository.findById(id).get();
     }
     public Beneficiaire save(Beneficiaire beneficiaire) {
         return beneficiaireRepository.save(beneficiaire);
     }
     public void deleteBeneficiaire(Long id) {
         beneficiaireRepository.deleteById(id);
+    }
+
+    public Beneficiaire updateBeneficiaire(Beneficiaire beneficiaire) {
+            return beneficiaireRepository.save(beneficiaire);
     }
 }

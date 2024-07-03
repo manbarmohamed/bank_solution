@@ -1,15 +1,15 @@
 package com.banksolution.ebank.controller;
 
 
+import com.banksolution.ebank.exception.BeneficiaireNotFoundException;
 import com.banksolution.ebank.model.Beneficiaire;
 import com.banksolution.ebank.service.BeneficiaireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/beneficiaire")
@@ -22,4 +22,28 @@ public class BeneficiaireController {
         List<Beneficiaire> beneficiaireList = beneficiaireService.getAllBeneficiaire();
         return ResponseEntity.ok(beneficiaireList);
     }
+    @DeleteMapping("/del/{id}")
+    public String deleteBeneficiaire(@PathVariable Long id) {
+        beneficiaireService.deleteBeneficiaire(id);
+        return "Beneficiaire deleted";
+    }
+    @GetMapping("/finsById/{id}")
+    public Beneficiaire getBeneficiaireById(@PathVariable Long id) {
+        return beneficiaireService.getBeneficiaireById(id);
+    }
+    @PostMapping("/add")
+    public Beneficiaire saveBeneficiaire(@RequestBody Beneficiaire beneficiaire) {
+        return beneficiaireService.save(beneficiaire);
+    }
+
+    @PutMapping("/edit/{id}")
+    public String updateBeneficiain(@RequestBody Beneficiaire beneficiaire, @PathVariable Long id) {
+        Beneficiaire beneficiaireUpdated = beneficiaireService.getBeneficiaireById(id);
+        beneficiaireUpdated.setNom(beneficiaire.getNom());
+        beneficiaireUpdated.setBanque(beneficiaire.getBanque());
+        beneficiaireUpdated.setNumeroCompte(beneficiaire.getNumeroCompte());
+        beneficiaireService.updateBeneficiaire(beneficiaireUpdated);
+        return "Beneficiaire updated";
+    }
+
 }
