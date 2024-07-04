@@ -20,5 +20,9 @@ public class TransactionService {
         return transactionRepository.findAllByUSER();
     }
 
+    public List<Object> getAllTransactionByCompte(Long id_Compte) {
+        return transactionRepository.findAllByCOMPTE(id_Compte);
+    }
+
 
 }
