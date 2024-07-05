@@ -30,7 +30,7 @@ public class Beneficiaire {
     private Compte compte;
 
 
-    @OneToMany(mappedBy = "beneficiaire", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "beneficiaire", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Transaction> transactions = new ArrayList<>();
 

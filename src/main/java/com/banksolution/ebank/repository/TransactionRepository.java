@@ -14,4 +14,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Object> findAllByUSER();
     @Query(value = "SELECT * from transaction inner join compte c on c.id=?1",nativeQuery = true)
     List<Object> findAllByCOMPTE(Long id_compte);
+
 }

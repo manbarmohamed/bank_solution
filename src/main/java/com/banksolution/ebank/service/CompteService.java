@@ -3,6 +3,7 @@ package com.banksolution.ebank.service;
 import com.banksolution.ebank.exception.UtilisateurNotFoundException;
 import com.banksolution.ebank.model.CarteBancaire;
 import com.banksolution.ebank.model.Compte;
+import com.banksolution.ebank.model.Utilisateur;
 import com.banksolution.ebank.model.enums.TypeCarte;
 import com.banksolution.ebank.model.enums.TypeCompte;
 import com.banksolution.ebank.repository.CarteBancaireRepository;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -53,7 +55,20 @@ public class CompteService {
         return compteRepository.findAll();
     }
 
-    public void closeCompte(Long compteId) {
-        compteRepository.deleteById(compteId);
+
+    public List<Compte> getComptesByUser(Utilisateur utilisateur){
+        return compteRepository.findAllByUtilisateurIs(utilisateur);
+    }
+
+    public Compte getCompteById(Long id) {
+        return compteRepository.findById(id).get();
+    }
+
+    public void deleteAccount(Compte compte) throws Exception {
+        Compte compteClosed = compteRepository.findById(compte.getId()).orElseThrow(()-> new Exception("Not found!!"));
+        if (compteClosed.getSolde()!=0){
+            throw new Exception("Account be zero to close!!");
+        }
+        compteRepository.delete(compte);
     }
 }

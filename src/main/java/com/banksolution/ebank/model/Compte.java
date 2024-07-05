@@ -33,15 +33,15 @@ public class Compte {
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
-    @OneToMany(mappedBy = "compte")
+    @OneToMany(mappedBy = "compte", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Transaction> transactions;
 
-    @OneToMany(mappedBy = "compte")
+    @OneToMany(mappedBy = "compte", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<CarteBancaire> cartesBancaires;
 
-    @OneToMany(mappedBy = "compte")
+    @OneToMany(mappedBy = "compte", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Beneficiaire> beneficiaries;
 

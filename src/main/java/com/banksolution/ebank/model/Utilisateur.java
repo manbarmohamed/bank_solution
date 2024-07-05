@@ -26,7 +26,7 @@ public class Utilisateur {
     private String prenom;
     private String email;
 
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Compte> comptes;
 

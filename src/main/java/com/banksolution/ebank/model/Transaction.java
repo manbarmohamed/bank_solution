@@ -32,11 +32,10 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "compte_id")
-    @JsonIgnore
+
     private Compte compte;
 
     @ManyToOne
     @JoinColumn(name = "beneficiare_id")
-    @JsonIgnore
     private Beneficiaire beneficiaire;
 }

@@ -27,12 +27,10 @@ public class UtilisateurController {
     }
 
     @GetMapping("findbyid")
-    public ResponseEntity<Optional<Utilisateur>> getUtilisateurById(@RequestParam Long id) {
-        Optional<Utilisateur> utilisateur = utilisateurService.getUtilisateurById(id);
-        if (utilisateur.isPresent()) {
+    public ResponseEntity<Utilisateur> getUtilisateurById(@RequestParam Long id) {
+        Utilisateur utilisateur = utilisateurService.getUtilisateurById(id);
+
             return ResponseEntity.ok(utilisateur);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+
     }
 }
