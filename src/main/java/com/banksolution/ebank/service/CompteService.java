@@ -60,29 +60,6 @@ public class CompteService {
         return compte;
     }
 
-
-
-//    public Compte createAccount(Long userId, Compte compte) {
-//
-//        Utilisateur utilisateur = utilisateurRepository.findById(userId) .orElseThrow(() -> new IllegalArgumentException("User not found"));
-//
-//        if (utilisateur.getComptes().stream().anyMatch(acc -> acc.getType() == compte.getType())) {
-//            throw new IllegalArgumentException("An account of this type already exists for this user.");
-//        }
-//
-//        compte.setUtilisateur(utilisateur);
-//        compte.setDateCreation(LocalDate.now());
-//
-//        compteRepository.save(compte);
-//
-//        CarteBancaire bankCard = carteBancaireRepository(account);
-//
-//        account.getBankCards().add(bankCard);
-//
-//        accountRepository.save(account);
-//
-//        return account;
-//    }
     public List<Compte> getComptes() {
         return compteRepository.findAll();
     }
