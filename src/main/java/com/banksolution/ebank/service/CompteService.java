@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,15 +28,23 @@ public class CompteService {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
-    public Compte creerCompteEtCarte(Long utilisateurId, TypeCompte typeCompte, double soldeInitial) {
+    public Compte creerCompteEtCarte(Long utilisateurId, TypeCompte typeCompte, double soldeInitial) throws Exception {
+        Utilisateur utilisateur = utilisateurRepository.findById(utilisateurId)
+                .orElseThrow(() -> new IllegalArgumentException("Utilisateur non trouvé"));
+
+
+        boolean compteExiste = utilisateur.getComptes().stream()
+                .anyMatch(compte -> compte.getType().equals(typeCompte));
+        if (compteExiste) {
+            throw new IllegalArgumentException("Un compte de ce type existe déjà pour cet utilisateur.");
+        }
 
         Compte compte = new Compte();
         compte.setType(typeCompte);
         compte.setSolde(soldeInitial);
         compte.setDateCreation(LocalDate.now());
         compte.setActif(true);
-
-        compte.setUtilisateur(utilisateurRepository.findById(utilisateurId).orElseThrow(() -> new UtilisateurNotFoundException("Utilisateur non trouvé")));
+        compte.setUtilisateur(utilisateur);
         compteRepository.save(compte);
 
 
@@ -51,6 +60,29 @@ public class CompteService {
         return compte;
     }
 
+
+
+//    public Compte createAccount(Long userId, Compte compte) {
+//
+//        Utilisateur utilisateur = utilisateurRepository.findById(userId) .orElseThrow(() -> new IllegalArgumentException("User not found"));
+//
+//        if (utilisateur.getComptes().stream().anyMatch(acc -> acc.getType() == compte.getType())) {
+//            throw new IllegalArgumentException("An account of this type already exists for this user.");
+//        }
+//
+//        compte.setUtilisateur(utilisateur);
+//        compte.setDateCreation(LocalDate.now());
+//
+//        compteRepository.save(compte);
+//
+//        CarteBancaire bankCard = carteBancaireRepository(account);
+//
+//        account.getBankCards().add(bankCard);
+//
+//        accountRepository.save(account);
+//
+//        return account;
+//    }
     public List<Compte> getComptes() {
         return compteRepository.findAll();
     }

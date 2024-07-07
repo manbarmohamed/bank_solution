@@ -22,7 +22,7 @@ public class CompteController {
     private UtilisateurService utilisateurService;
 
     @PostMapping("/creer")
-    public ResponseEntity<Compte> creerCompte(@RequestParam Long utilisateurId, @RequestParam TypeCompte typeCompte, @RequestParam double soldeInitial) {
+    public ResponseEntity<Compte> creerCompte(@RequestParam Long utilisateurId, @RequestParam TypeCompte typeCompte, @RequestParam double soldeInitial) throws Exception {
         Compte compte = compteService.creerCompteEtCarte(utilisateurId, typeCompte, soldeInitial);
         return ResponseEntity.ok(compte);
     }
