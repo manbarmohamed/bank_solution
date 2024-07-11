@@ -1,14 +1,14 @@
-package com.banksolution.ebank.service;
+package com.banksolution.ebank;
 
 import com.banksolution.ebank.model.Beneficiaire;
 import com.banksolution.ebank.repository.BeneficiaireRepository;
+import com.banksolution.ebank.service.BeneficiaireService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 

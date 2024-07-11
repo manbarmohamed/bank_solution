@@ -9,4 +9,5 @@ import java.util.List;
 public interface CarteBancaireRepository extends JpaRepository<CarteBancaire, Long> {
 
     List<CarteBancaire> findByCompteId(Long compte_id);
+
 }
